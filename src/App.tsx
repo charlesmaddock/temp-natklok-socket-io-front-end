@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { io } from "socket.io-client";
+import openSocket from "socket.io-client";
+const socket = openSocket("http://localhost:3001", {
+  transports: ["websocket"],
+});
 
 function App() {
-  const [socket] = useState(io("http://127.0.0.1:3001"));
-
   const [roomToJoinId, setRoomToJoinId] = useState("");
   const [createdRoomId, setCreatedRoomId] = useState("");
 
@@ -13,6 +14,10 @@ function App() {
   useEffect(() => {
     socket.on("roomCreated", (data) => {
       setCreatedRoomId(data.roomId);
+    });
+
+    socket.on("roomJoined", (data) => {
+      alert("Room joined!");
     });
   }, []);
 
