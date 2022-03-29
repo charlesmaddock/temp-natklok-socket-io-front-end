@@ -33,12 +33,12 @@ function App() {
   };
 
   const handleAnsweredQuestion = () => {
-    console.log(handleAnsweredQuestion);
+    console.log("handleAnsweredQuestion");
     let payload = {
       questionId: questionId,
       isCorrect: isCorrect,
     };
-    socket.send("answerQuestion", payload);
+    socket.emit("answerQuestion", payload);
   };
 
   return (
