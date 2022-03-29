@@ -22,7 +22,7 @@ function App() {
   }, []);
 
   const handleCreateRoom = () => {
-    socket.emit("createRoom");
+    socket.emit("requestCreateRoom");
   };
 
   const handleJoinRoom = () => {
@@ -33,6 +33,7 @@ function App() {
   };
 
   const handleAnsweredQuestion = () => {
+    console.log(handleAnsweredQuestion);
     let payload = {
       questionId: questionId,
       isCorrect: isCorrect,
